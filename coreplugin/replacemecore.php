@@ -1,10 +1,10 @@
 <?php
 /**
- * Plugin Name: CCPCore
- * Description: Core functionality for the replaceme site.
+ * Plugin Name: ReplaceMeCore
+ * Description: Core functionality for the ReplaceMe site.
  */
 
-class CCPCore {
+class ReplaceMeCore {
 
 	function __construct() {
 		if(function_exists('acf_update_setting')) {
@@ -14,5 +14,5 @@ class CCPCore {
 	}
 }
 
-$CCPCore = new CCPCore();
+$ReplaceMeCore = new ReplaceMeCore();
 ?>
