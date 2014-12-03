@@ -115,7 +115,7 @@ gulp.task('browser-sync', function () {
 	var files = [
 		'**/*.html',
 		'**/*.php',
-		'build/css/style.css',
+		'build/css/main.css',
 		'build/js/main.min.js',
 		'build/img/**/*.{png,jpg,jpeg,gif}'
 	];
@@ -123,7 +123,7 @@ gulp.task('browser-sync', function () {
 		//server: {
 			//baseDir: './'
 		//},
-		proxy: 'http://localhost/[site-name-here]', // Proxy for local dev sites
+		proxy: 'http://10.10.10.116/[site-name-here]', // Proxy for local dev sites
 		// port: 5555, // Sets the port in which to serve the site
 		// open: false // Stops BS from opening a new browser window
 	});
