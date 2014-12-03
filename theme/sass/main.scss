@@ -1,17 +1,7 @@
 @import 'bootstrap/assets/stylesheets/bootstrap.scss';
-@import '../css/vendor_style.css';
-
-@mixin marginize() {
-	width:1138px;
-	max-width:100%;
-	margin:0 auto;
-}
+@import '../../css/vendor_style.css';
 
 @mixin remcalc($px) {
 	font-size:$px+px;
 	font-size:($px/12)+rem;
-}
-
-.marginize {
-	@include marginize();
 }

@@ -15,4 +15,13 @@ class ReplaceMeCore {
 }
 
 $ReplaceMeCore = new ReplaceMeCore();
+
+class WebspecHelpers {
+	function ws_get_attachment_image_url($id, $size) {
+		$img = wp_get_attachment_image_src($id, $size);
+		return $img[0];
+	}
+}
+
+$WebspecHelpers = new WebspecHelpers();
 ?>
