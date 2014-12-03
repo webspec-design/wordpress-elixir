@@ -1,5 +1,10 @@
 <?php
 
+define( 'THEMEROOT', get_stylesheet_directory_uri() );
+define( 'IMAGES', THEMEROOT . '/build/img' );
+define( 'SCRIPTS', THEMEROOT . '/build/js' );
+define( 'STYLES', THEMEROOT . '/build/css' );
+
 class ReplaceMeFunctions {
 	function __construct() {
 		add_action('wp_enqueue_scripts', array($this, 'replaceme_scripts_styles'));
@@ -7,8 +12,8 @@ class ReplaceMeFunctions {
 	}
 	function replaceme_scripts_styles() {
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('replaceme_scripts', get_template_directory_uri().'/build/js/main.min.js', array(), filemtime(get_template_directory().'/build/js/main.min.js'));
-		wp_enqueue_style('replaceme_styles', get_template_directory_uri().'/build/css/main.css', array(), filemtime(get_template_directory().'/build/css/main.css'));
+		wp_enqueue_script('replaceme_scripts', SCRIPTS . '/main.min.js', array(), filemtime(get_template_directory().'/build/js/main.min.js'));
+		wp_enqueue_style('replaceme_styles', STYLES . '/main.css', array(), filemtime(get_template_directory().'/build/css/main.css'));
 	}
 	function replaceme_menus_image_sizes() {
 		register_nav_menu('navigation-menu', 'Navigation Menu');
