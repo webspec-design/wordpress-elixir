@@ -7,10 +7,10 @@ define( 'STYLES', THEMEROOT . '/build/css' );
 
 class ReplaceMeFunctions {
 	function __construct() {
-		add_action('wp_enqueue_scripts', array($this, 'replaceme_scripts_styles'));
+		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
 		add_action('init', array($this, 'replaceme_menus_image_sizes'));
 	}
-	function replaceme_scripts_styles() {
+	function wp_enqueue_scripts() {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('replaceme_scripts', SCRIPTS . '/main.min.js', array(), filemtime(get_template_directory().'/build/js/main.min.js'));
 		wp_enqueue_style('replaceme_styles', STYLES . '/main.css', array(), filemtime(get_template_directory().'/build/css/main.css'));
@@ -21,9 +21,10 @@ class ReplaceMeFunctions {
 			acf_add_options_page();
 		}
 	}
-	function ws_get_attachment_image_url($id, $size) {
-		$img = wp_get_attachment_image_src($id, $size);
-		return $img[0];
+	function image($id, $size='', $icon='', $attr=array()) {
+		$img = wp_get_attachment_image($id, $size, $icon, $attr);
+		$img = preg_replace( '/(width|height)="\d*"\s/', "", $img );
+		return $img;
 	}
 }
 $ReplaceMeFunctions = new ReplaceMeFunctions();
