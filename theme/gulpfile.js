@@ -145,7 +145,7 @@ gulp.task('move-fonts', function() {
 
 // Default Task
 gulp.task('default', function(cb) {
-	runSequence('clean', 'clear-cache', 'images', 'scripts', 'styles', 'move-fonts', 'watch', cb);
+	runSequence('clean', 'clear-cache', 'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
 });
 
 // Build Task
