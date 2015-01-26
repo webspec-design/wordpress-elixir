@@ -1,22 +1,23 @@
 {
   "name": "Gulp-Project-Starter-Setup",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Starter setup for using Gulp in a project.",
   "license": "MIT",
   "author": {
-    "name": "Kyle Brumm",
-    "email": "kjbrum@msn.com",
-    "url": "http://kylebrumm.com"
+    "name": "Ethan Clevenger",
+    "email": "ethan.c.clevenger@gmail.com",
+    "url": "http://ethanclevenger.com"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:kjbrum/Gulp-Project-Starter-Setup.git"
+    "url": "https://github.com/ethanclevenger91/WordpressGulpStarter.git"
   },
   "devDependencies": {
     "browser-sync": "^1.3.3",
     "del":"^0.1.3",
     "gulp": "^3.8.7",
     "gulp-autoprefixer":"^1.0.1",
+    "gulp-bower":"^0.0.10",
     "gulp-cache": "^0.2.0",
     "gulp-concat": "^2.3.4",
     "gulp-imagemin": "^0.6.2",

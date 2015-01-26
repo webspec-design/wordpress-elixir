@@ -3,6 +3,7 @@ var gulp = require('gulp');
 
 // Plugins
 var autoprefix = require('gulp-autoprefixer');
+var bower = require('gulp-bower');
 var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
 var cache = require('gulp-cache');
@@ -22,14 +23,15 @@ var paths = {
 	scripts: 'js/**/*.js',
 	styles: 'sass/**/*.scss',
 	fonts: 'sass/fonts/*',
-	images: 'img/**/*.{png,jpg,jpeg,gif,svg}'
+	images: 'img/**/*.{png,jpg,jpeg,gif,svg}',
+	bowerDir: './bower_components'
 };
 
 var destPaths = {
 	scripts: 'build/js',
 	styles: 'build/css',
 	fonts: 'build/fonts',
-	images: 'build/img/',
+	images: 'build/img',
 	html: 'build/validated'
 };
 
@@ -43,11 +45,27 @@ var handleErrors = function() {
 	this.emit('end');
 };
 
+gulp.task('update-bower', function() {
+	return bower()
+		.pipe(gulp.dest(paths.bowerDir));
+});
+
+gulp.task('move-bower', function() {
+	gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
+		.pipe(gulp.dest('sass/fonts'));
+	gulp.src(paths.bowerDir + '/bootstrap-sass-official/**/*.scss')
+		.pipe(gulp.dest('sass/bootstrap'));
+	return gulp.src(paths.bowerDir + '/fontawesome/scss/**/*.scss')
+		.pipe(gulp.dest('sass/fontawesome'));
+})
+
 // Compile our Sass
 gulp.task('styles', function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
-		.pipe(sass({errLogToConsole:true}))
+		.pipe(sass({
+			errLogToConsole:true,
+		}))
 		.pipe(autoprefix())
 		.pipe(gulp.dest(destPaths.styles))
 		.pipe(notify('Styles task complete!'));
@@ -123,7 +141,7 @@ gulp.task('browser-sync', function () {
 		//server: {
 			//baseDir: './'
 		//},
-		proxy: 'http://10.10.10.116/[site-name-here]', // Proxy for local dev sites
+		proxy: 'http://10.10.10.116/cellular-advantage', // Proxy for local dev sites
 		// port: 5555, // Sets the port in which to serve the site
 		// open: false // Stops BS from opening a new browser window
 	});
@@ -147,6 +165,11 @@ gulp.task('move-fonts', function() {
 gulp.task('default', function(cb) {
 	runSequence('clean', 'clear-cache', 'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
 });
+
+// Bower Task
+gulp.task('bower', function(cb) {
+	runSequence('update-bower', 'move-bower', cb);
+})
 
 // Build Task
 gulp.task('build', function(cb) {
