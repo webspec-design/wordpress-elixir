@@ -55,6 +55,8 @@ gulp.task('move-bower', function() {
 		.pipe(gulp.dest('sass/fonts'));
 	gulp.src(paths.bowerDir + '/bootstrap-sass-official/**/*.scss')
 		.pipe(gulp.dest('sass/bootstrap'));
+	gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/javascripts/**/*.js')
+		.pipe(gulp.dest('js/bootstrap'));
 	return gulp.src(paths.bowerDir + '/fontawesome/scss/**/*.scss')
 		.pipe(gulp.dest('sass/fontawesome'));
 })
@@ -141,7 +143,7 @@ gulp.task('browser-sync', function () {
 		//server: {
 			//baseDir: './'
 		//},
-		proxy: 'http://10.10.10.116/cellular-advantage', // Proxy for local dev sites
+		proxy: 'http://10.10.10.116/[site-name-here]', // Proxy for local dev sites
 		// port: 5555, // Sets the port in which to serve the site
 		// open: false // Stops BS from opening a new browser window
 	});
