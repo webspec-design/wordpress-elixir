@@ -12,9 +12,18 @@ class ReplaceMeFunctions {
 		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
 		add_action('init', array($this, 'replaceme_menus_image_sizes'));
 		add_action('after_setup_theme', array($this, 'title_support'));
+		add_action('after_setup_theme', array($this, 'editor_roles'));
 	}
 	function title_support() {
 		add_theme_support( 'title-tag' );
+	}
+	function editor_roles() {
+		$caps_set = get_option('ws_caps_set');
+		if(!$caps_set) {
+			$role = get_role('editor');
+			$role->add_cap('edit_theme_options');
+			update_option('ws_caps_set', true);
+		}
 	}
 	function wp_enqueue_scripts() {
 		wp_enqueue_script('jquery');
