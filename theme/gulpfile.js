@@ -53,7 +53,7 @@ gulp.task('update-bower', function() {
 
 gulp.task('move-bower', function() {
 	gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/fonts/bootstrap/**.*')
-		.pipe(gulp.desk('sass/fonts'));
+		.pipe(gulp.dest('sass/fonts'));
 	return gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
 		.pipe(gulp.dest('sass/fonts'));
 });
