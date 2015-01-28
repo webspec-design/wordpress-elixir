@@ -3,6 +3,7 @@ var gulp = require('gulp');
 
 // Plugins
 var autoprefix = require('gulp-autoprefixer');
+var bowerFiles = require('main-bower-files');
 var bower = require('gulp-bower');
 var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
@@ -51,10 +52,8 @@ gulp.task('update-bower', function() {
 });
 
 gulp.task('move-bower', function() {
-	gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
+	return gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
 		.pipe(gulp.dest('sass/fonts'));
-	return gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/javascripts/**/*.js')
-		.pipe(gulp.dest('js/bootstrap'));
 });
 
 // Compile our Sass
@@ -94,7 +93,12 @@ gulp.task('build-styles', function() {
 
 // Lint, minify, and concat our JS
 gulp.task('scripts', function() {
-	return gulp.src(paths.scripts)
+	return gulp.src(bowerFiles(
+			['**/*.js'], 
+			{
+				includeSelf:true
+			}
+		), {base: 'bower_components'})
 		.pipe(plumber())
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))

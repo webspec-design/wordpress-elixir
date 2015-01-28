@@ -14,7 +14,11 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap-sass-official": "~3.3.3",
-    "fontawesome": "~4.3.0"
-  }
+    "bootstrap-sass-official": ">=3.3.3",
+    "fontawesome": ">=4.3.0"
+  },
+  "main": [
+    "js/scripts.js",
+    "sass/main.scss"
+  ]
 }
