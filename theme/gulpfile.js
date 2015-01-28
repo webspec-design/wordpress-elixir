@@ -53,13 +53,9 @@ gulp.task('update-bower', function() {
 gulp.task('move-bower', function() {
 	gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
 		.pipe(gulp.dest('sass/fonts'));
-	gulp.src(paths.bowerDir + '/bootstrap-sass-official/**/*.scss')
-		.pipe(gulp.dest('sass/bootstrap'));
-	gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/javascripts/**/*.js')
+	return gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/javascripts/**/*.js')
 		.pipe(gulp.dest('js/bootstrap'));
-	return gulp.src(paths.bowerDir + '/fontawesome/scss/**/*.scss')
-		.pipe(gulp.dest('sass/fontawesome'));
-})
+});
 
 // Compile our Sass
 gulp.task('styles', function() {
@@ -67,6 +63,10 @@ gulp.task('styles', function() {
 		.pipe(plumber())
 		.pipe(sass({
 			errLogToConsole:true,
+			includePaths:[
+				paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+				paths.bowerDir + '/fontawesome/scss'
+			]
 		}))
 		.pipe(autoprefix())
 		.pipe(gulp.dest(destPaths.styles))
@@ -77,7 +77,13 @@ gulp.task('styles', function() {
 gulp.task('build-styles', function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
-		.pipe(sass({errLogToConsole:true}))
+		.pipe(sass({
+			errLogToConsole:true,
+			includePaths:[
+				paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
+				paths.bowerDir + '/fontawesome/scss'
+			]
+		}))
 		.pipe(autoprefix({cascade:false}))
 		.pipe(minifyCSS())
 		//.pipe(rename('main.css'))
