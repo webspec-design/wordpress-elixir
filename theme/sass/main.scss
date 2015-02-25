@@ -1,6 +1,6 @@
 @import 'bootstrap.scss';
 @import 'font-awesome.scss';
-@import '../../css/vendor_style.css';
+@import 'vendor_style';
 
 @mixin remcalc($px) {
 	font-size:$px+px;

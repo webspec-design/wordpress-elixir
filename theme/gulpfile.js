@@ -13,6 +13,7 @@ var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var minifyCSS = require('gulp-minify-css');
 var notify = require('gulp-notify'); // requires Growl on Windows
+var path = require('path');
 var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
@@ -23,7 +24,7 @@ var uglify = require('gulp-uglify');
 var paths = {
 	scripts: 'js/**/*.js',
 	styles: 'sass/**/*.scss',
-	fonts: 'sass/fonts/*',
+	fonts: 'sass/fonts/**/*',
 	images: 'img/**/*.{png,jpg,jpeg,gif,svg}',
 	bowerDir: './bower_components'
 };
@@ -52,22 +53,33 @@ gulp.task('update-bower', function() {
 });
 
 gulp.task('move-bower', function() {
-	gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/fonts/bootstrap/**.*')
+	gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/fonts/**/*.*')
 		.pipe(gulp.dest('sass/fonts'));
 	return gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
 		.pipe(gulp.dest('sass/fonts'));
 });
 
+//Make any bower-installed css files scss to prevent extra requests
+gulp.task('css-to-scss', function() {
+	return bowerFiles('**/*.css').map(function(file) {
+		gulp.src(file)
+			.pipe(rename(function(path) {
+				path.basename = '_'+path.basename;
+				path.extname = '.scss';
+			}))
+			.pipe(gulp.dest(path.dirname(file)));
+	});
+});
+
 // Compile our Sass
-gulp.task('styles', function() {
+gulp.task('styles', ['css-to-scss'], function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
 		.pipe(sass({
 			errLogToConsole:true,
-			includePaths:[
-				paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
-				paths.bowerDir + '/fontawesome/scss'
-			]
+			includePaths: bowerFiles('**/*.{scss,sass,css}').map(function(file) {
+				return path.dirname(file);
+			})
 		}))
 		.pipe(autoprefix())
 		.pipe(gulp.dest(destPaths.styles))
@@ -75,15 +87,14 @@ gulp.task('styles', function() {
 });
 
 // Compile our Sass
-gulp.task('build-styles', function() {
+gulp.task('build-styles', ['css-to-scss'], function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
 		.pipe(sass({
 			errLogToConsole:true,
-			includePaths:[
-				paths.bowerDir + '/bootstrap-sass-official/assets/stylesheets',
-				paths.bowerDir + '/fontawesome/scss'
-			]
+			includePaths:bowerFiles('**/*.{scss,sass,css}').map(function(file) {
+				return path.dirname(file);
+			})
 		}))
 		.pipe(autoprefix({cascade:false}))
 		.pipe(minifyCSS())
