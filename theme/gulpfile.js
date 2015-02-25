@@ -65,6 +65,7 @@ gulp.task('css-to-scss', function() {
 		gulp.src(file)
 			.pipe(rename(function(path) {
 				path.basename = '_'+path.basename;
+				path.basename = path.basename.replace('.min', '');
 				path.extname = '.scss';
 			}))
 			.pipe(gulp.dest(path.dirname(file)));
@@ -72,7 +73,7 @@ gulp.task('css-to-scss', function() {
 });
 
 // Compile our Sass
-gulp.task('styles', ['css-to-scss'], function() {
+gulp.task('styles', function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
 		.pipe(sass({
@@ -87,7 +88,7 @@ gulp.task('styles', ['css-to-scss'], function() {
 });
 
 // Compile our Sass
-gulp.task('build-styles', ['css-to-scss'], function() {
+gulp.task('build-styles', function() {
 	return gulp.src(paths.styles)
 		.pipe(plumber())
 		.pipe(sass({
@@ -188,7 +189,7 @@ gulp.task('move-fonts', function() {
 
 // Default Task
 gulp.task('default', function(cb) {
-	runSequence('clean', 'clear-cache', 'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
+	runSequence('clean', 'clear-cache', 'css-to-scss', 'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
 });
 
 // Bower Task
@@ -198,5 +199,5 @@ gulp.task('bower', function(cb) {
 
 // Build Task
 gulp.task('build', function(cb) {
-	runSequence('clean', 'clear-cache', 'build-images', 'scripts', 'build-styles', 'move-fonts', cb);
+	runSequence('clean', 'clear-cache', 'css-to-scss', 'build-images', 'scripts', 'build-styles', 'move-fonts', cb);
 });
