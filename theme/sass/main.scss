@@ -1,6 +1,6 @@
 @import 'bootstrap';
 @import 'font-awesome';
-@import 'vendor_style';
+@import 'wordpress';
 
 @mixin remcalc($px) {
 	font-size:$px+px;
