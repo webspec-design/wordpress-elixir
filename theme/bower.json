@@ -18,7 +18,8 @@
     "fontawesome": ">=4.3.0"
   },
   "main": [
-    "js/scripts.js",
-    "sass/main.scss"
+    "js/**/*.js",
+    "sass/main.scss",
+    "sass/fonts/**/*"
   ]
 }
