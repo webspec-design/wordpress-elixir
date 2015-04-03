@@ -1,0 +1,22 @@
+/*Default mixins*/
+@mixin bp($class) {
+  @if $class == xs {
+    @media (max-width: $screen-xs-max) { @content; }
+  }
+ 
+  @else if $class == sm {
+    @media (max-width: $screen-sm-max) { @content; }
+  }
+ 
+  @else if $class == md {
+    @media (max-width: $screen-md-max) { @content; }
+  }
+ 
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md";
+  }
+}
+@mixin remcalc($px) {
+	font-size:$px+px;
+	font-size:($px/16)+rem;
+}

@@ -1,11 +1,7 @@
+$icon-font-path: '../fonts/'; //override bootstrap
 @import 'bootstrap';
 @import 'font-awesome';
 @import 'wordpress';
-
-@mixin remcalc($px) {
-	font-size:$px+px;
-	font-size:($px/12)+rem;
-}
 .menu-navigation-container {
 	ul {
 		padding-left:0;

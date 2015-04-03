@@ -9,6 +9,7 @@ var browserSync = require('browser-sync');
 var concat = require('gulp-concat');
 var cache = require('gulp-cache');
 var del = require('del');
+var flatten = require('gulp-flatten');
 var imagemin = require('gulp-imagemin');
 var jshint = require('gulp-jshint');
 var minifyCSS = require('gulp-minify-css');
@@ -52,15 +53,9 @@ gulp.task('update-bower', function() {
 		.pipe(gulp.dest(paths.bowerDir));
 });
 
-gulp.task('move-bower', function() {
-	gulp.src(paths.bowerDir + '/bootstrap-sass-official/assets/fonts/**/*.*')
-		.pipe(gulp.dest('sass/fonts'));
-	return gulp.src(paths.bowerDir + '/fontawesome/fonts/**.*')
-		.pipe(gulp.dest('sass/fonts'));
-});
-
 //Make any bower-installed css files scss to prevent extra requests
 gulp.task('css-to-scss', function() {
+	var css = bowerFiles('**/*.css');
 	return bowerFiles('**/*.css').map(function(file) {
 		gulp.src(file)
 			.pipe(rename(function(path) {
@@ -122,12 +117,12 @@ gulp.task('scripts', function() {
 		.pipe(notify('Scripts tasks complete!'));
 });
 
-gulp.task('clean-images', function(cb) {
+/*gulp.task('clean-images', function(cb) {
 	del([destPaths.images], cb);
-})
+});*/
 
 // Compress Images
-gulp.task('images', ['clean-images'], function() {
+gulp.task('images', function() {
 	return gulp.src(paths.images)
 		.pipe(plumber())
 		.pipe(gulp.dest(destPaths.images))
@@ -167,7 +162,7 @@ gulp.task('browser-sync', function () {
 		//server: {
 			//baseDir: './'
 		//},
-		proxy: 'http://10.10.10.116/[site-name-here]', // Proxy for local dev sites
+		proxy: 'http://10.10.10.116/harkin-wp', // Proxy for local dev sites
 		// port: 5555, // Sets the port in which to serve the site
 		// open: false // Stops BS from opening a new browser window
 	});
@@ -183,21 +178,27 @@ gulp.task('clear-cache', function() {
 });
 
 gulp.task('move-fonts', function() {
-	gulp.src(paths.fonts)
+	return gulp.src(bowerFiles(
+			['**/*.eot', '**/*.woff', '**/*.woff2', '**/*.svg', '**/*.ttf'], 
+			{
+				includeSelf:true
+			}
+		), {base: 'bower_components'})
+	.pipe(flatten())
 	.pipe(gulp.dest(destPaths.fonts));
 });
 
 // Default Task
 gulp.task('default', function(cb) {
-	runSequence('clean', 'clear-cache', 'css-to-scss', 'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
+	runSequence('css-to-scss', 'clean', 'clear-cache', 'images', 'scripts', 'styles', 'move-fonts', 'browser-sync', 'watch', cb);
 });
 
 // Bower Task
 gulp.task('bower', function(cb) {
-	runSequence('update-bower', 'move-bower', cb);
+	runSequence('update-bower', cb);
 })
 
 // Build Task
 gulp.task('build', function(cb) {
-	runSequence('clean', 'clear-cache', 'css-to-scss', 'build-images', 'scripts', 'build-styles', 'move-fonts', cb);
+	runSequence('css-to-scss', 'clean', 'clear-cache', 'build-images', 'scripts', 'build-styles', 'move-fonts', cb);
 });
