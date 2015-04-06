@@ -6,7 +6,7 @@ A starter Bootstrap WordPress theme prepped for gulp and an accompanying core pl
 Directions
 ====================
 
-1. Put theme in "themes" folder, put plugin in "plugins" folder.
+1. Put theme in "themes" folder
 2. Use case-sensitive `ReplaceMe` and `replaceme` to rename classes in theme's `functions.php` and plugin's main file.
 3. In `gulpfile.js`, replace the browser-sync proxy line
 4. Command line: do `npm install`

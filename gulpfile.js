@@ -55,7 +55,6 @@ gulp.task('update-bower', function() {
 
 //Make any bower-installed css files scss to prevent extra requests
 gulp.task('css-to-scss', function() {
-	var css = bowerFiles('**/*.css');
 	return bowerFiles('**/*.css').map(function(file) {
 		gulp.src(file)
 			.pipe(rename(function(path) {
@@ -94,7 +93,6 @@ gulp.task('build-styles', function() {
 		}))
 		.pipe(autoprefix({cascade:false}))
 		.pipe(minifyCSS())
-		//.pipe(rename('main.css'))
 		.pipe(gulp.dest(destPaths.styles))
 		.pipe(notify('Build styles task complete!'));
 });
@@ -112,10 +110,25 @@ gulp.task('scripts', function() {
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
 		.pipe(uglify())
-		.pipe(concat('main.min.js'))
+		.pipe(concat('main.js'))
 		.pipe(gulp.dest(destPaths.scripts))
 		.pipe(notify('Scripts tasks complete!'));
 });
+
+gulp.task('build-scripts', function() {
+	return gulp.src(bowerFiles(
+			['**/*.js', '!**/jquery.js'], 
+			{
+				includeSelf:true
+			}
+		), {base: 'bower_components'})
+		.pipe(plumber())
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'))
+		.pipe(concat('main.js'))
+		.pipe(gulp.dest(destPaths.scripts))
+		.pipe(notify('Scripts tasks complete!'));
+	});
 
 /*gulp.task('clean-images', function(cb) {
 	del([destPaths.images], cb);
@@ -162,7 +175,7 @@ gulp.task('browser-sync', function () {
 		//server: {
 			//baseDir: './'
 		//},
-		proxy: 'http://10.10.10.116/harkin-wp', // Proxy for local dev sites
+		proxy: '[your-site-here]', // Proxy for local dev sites
 		// port: 5555, // Sets the port in which to serve the site
 		// open: false // Stops BS from opening a new browser window
 	});
@@ -200,5 +213,5 @@ gulp.task('bower', function(cb) {
 
 // Build Task
 gulp.task('build', function(cb) {
-	runSequence('css-to-scss', 'clean', 'clear-cache', 'build-images', 'scripts', 'build-styles', 'move-fonts', cb);
+	runSequence('css-to-scss', 'clean', 'clear-cache', 'build-images', 'build-scripts', 'build-styles', 'move-fonts', cb);
 });
