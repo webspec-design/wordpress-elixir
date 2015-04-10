@@ -109,7 +109,6 @@ gulp.task('scripts', function() {
 		.pipe(plumber())
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
-		.pipe(uglify())
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(destPaths.scripts))
 		.pipe(notify('Scripts tasks complete!'));
@@ -125,6 +124,7 @@ gulp.task('build-scripts', function() {
 		.pipe(plumber())
 		.pipe(jshint())
 		.pipe(jshint.reporter('default'))
+		.pipe(uglify())
 		.pipe(concat('main.js'))
 		.pipe(gulp.dest(destPaths.scripts))
 		.pipe(notify('Scripts tasks complete!'));
@@ -168,8 +168,8 @@ gulp.task('browser-sync', function () {
 		'**/*.html',
 		'**/*.php',
 		'build/css/main.css',
-		'build/js/main.min.js',
-		'build/img/**/*.{png,jpg,jpeg,gif}'
+		'build/js/main.js',
+		'build/img/**/*.{png,jpg,jpeg,gif,svg}'
 	];
 	browserSync.init(files, {
 		//server: {

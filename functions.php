@@ -27,7 +27,7 @@ class ReplaceMeFunctions {
 	}
 	function wp_enqueue_scripts() {
 		wp_enqueue_script('jquery');
-		wp_enqueue_script('replaceme_scripts', SCRIPTS . '/main.min.js', array(), filemtime(get_template_directory().'/build/js/main.js'));
+		wp_enqueue_script('replaceme_scripts', SCRIPTS . '/main.js', array(), filemtime(get_template_directory().'/build/js/main.js'));
 		wp_enqueue_style('replaceme_styles', STYLES . '/main.css', array(), filemtime(get_template_directory().'/build/css/main.css'));
 	}
 	function replaceme_menus_image_sizes() {

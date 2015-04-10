@@ -1,5 +1,5 @@
 /*Default mixins*/
-@mixin bp($class) {
+@mixin bpmax($class) {
   @if $class == xs {
     @media (max-width: $screen-xs-max) { @content; }
   }
@@ -10,6 +10,23 @@
  
   @else if $class == md {
     @media (max-width: $screen-md-max) { @content; }
+  }
+ 
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md";
+  }
+}
+@mixin bpmin($class) {
+  @if $class == sm {
+    @media (min-width: $screen-sm-min) { @content; }
+  }
+ 
+  @else if $class == lg {
+    @media (min-width: $screen-lg-min) { @content; }
+  }
+ 
+  @else if $class == md {
+    @media (min-width: $screen-md-min) { @content; }
   }
  
   @else {
