@@ -29,6 +29,7 @@ class ReplaceMeFunctions {
 		if(!$caps_set) {
 			$role = get_role('editor');
 			$role->add_cap('edit_theme_options');
+			$role->add_cap('gform_full_access');
 			update_option('ws_caps_set', true);
 		}
 	}
