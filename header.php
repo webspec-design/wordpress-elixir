@@ -23,7 +23,10 @@
 						<span class="bottom"></span>
 					</div>
 				</div>
-				<?php wp_nav_menu(array('menu'=>'Navigation', 'walker'=>new wp_bootstrap_navwalker())); ?>
+				<?php wp_nav_menu(array(
+					'menu'=>'navigation-menu',
+					'walker'=>new wp_bootstrap_navwalker()
+				)); ?>
 			</div>
 		</div>
 	</div>
