@@ -9,7 +9,7 @@ define( 'IMAGES_PATH', THEMEPATH . '/build/img' );
 
 class ReplaceMeTheme {
 	private static $self = false;
-	private static $initialized = false;
+	private static $isInitialized = false;
 
 	function __construct() {
 		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
