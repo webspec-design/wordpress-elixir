@@ -7,23 +7,34 @@ define( 'SCRIPTS', THEMEROOT . '/build/js' );
 define( 'STYLES', THEMEROOT . '/build/css' );
 define( 'IMAGES_PATH', THEMEPATH . '/build/img' );
 
-class ReplaceMeFunctions {
+class ReplaceMeTheme {
+	private static $self = false;
 	private static $initialized = false;
+
 	function __construct() {
+		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
+		add_action('init', array($this, 'menus_image_sizes'));
+		add_action('after_setup_theme', array($this, 'title_support'));
+		add_action('after_setup_theme', array($this, 'editor_roles'));
 	}
-	public static function initialize() {
-		if(static::$initialized) {
-			return;
+
+	public static function getInstance() {
+		if(!self::$isInitialized) {
+			self::$self = new self();
+			self::$isInitialized = true;
 		}
-		add_action('wp_enqueue_scripts', 'ReplaceMeFunctions::wp_enqueue_scripts');
-		add_action('init', 'ReplaceMeFunctions::menus_image_sizes');
-		add_action('after_setup_theme', 'ReplaceMeFunctions::title_support');
-		add_action('after_setup_theme', 'ReplaceMeFunctions::editor_roles');
-		static::$initialized = true;
+		return self::$self;
 	}
+
+	/*
+	* Opt the theme into WordPress controlled title tags
+	* By opting into this feature the <title> element should be left out of <head>
+	* @since 4.1
+	*/
 	public static function title_support() {
 		add_theme_support( 'title-tag' );
 	}
+
 	public static function editor_roles() {
 		$caps_set = get_option('ws_caps_set');
 		if(!$caps_set) {
@@ -33,24 +44,29 @@ class ReplaceMeFunctions {
 			update_option('ws_caps_set', true);
 		}
 	}
+
 	public static function wp_enqueue_scripts() {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('replaceme_scripts', SCRIPTS . '/main.js', array(), filemtime(get_template_directory().'/build/js/main.js'));
 		wp_enqueue_style('replaceme_styles', STYLES . '/main.css', array(), filemtime(get_template_directory().'/build/css/main.css'));
 	}
+
 	public static function menus_image_sizes() {
 		register_nav_menu('navigation-menu', 'Navigation Menu');
 		if( function_exists('acf_add_options_page') ) {
 			acf_add_options_page();
 		}
 	}
+
 	public static function image($id, $size='', $icon='', $attr=array()) {
 		$img = wp_get_attachment_image($id, $size, $icon, $attr);
 		$img = preg_replace( '/(width|height)="\d*"\s/', "", $img );
 		return $img;
 	}
 }
-ReplaceMeFunctions::initialize();
+
+ReplaceMeTheme::getInstance();
+
 class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 	/**
