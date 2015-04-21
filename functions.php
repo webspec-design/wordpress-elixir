@@ -55,10 +55,6 @@ class ReplaceMeTheme {
 		register_nav_menus(array(
 			'navigation-menu' => 'Navigation Menu'
 		));
-		
-		if( function_exists('acf_add_options_page') ) {
-			acf_add_options_page();
-		}
 	}
 
 	public static function image($id, $size='', $icon='', $attr=array()) {
