@@ -35,5 +35,5 @@
 }
 @mixin remcalc($px) {
 	font-size:$px+px;
-	font-size:($px/16)+rem;
+	font-size:($px/10)+rem;
 }
