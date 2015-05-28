@@ -30,13 +30,18 @@
 	.menu-navigation-container {
 		width:100%;
 		display:none;
-		float:left;
+		position:absolute;
+		top:100%;
+		z-index:10;
 		.menu {
 			padding:0;
 			width:100%;
 			list-style-type:none;
 			li {
-				width:100%;
+				display:block;
+				a {
+					display:block;
+				}
 			}
 		}
 		.mobile-dropdown {
@@ -78,27 +83,25 @@
 		}
 	}
 	.trigger-wrap {
-		width:43px;
 		padding:5px 0;
 	}
 	.menu-trigger {
-		width:37px;
+		width:22px;
 		position:relative;
 		display:block;
 		margin:0 auto;
 		.top, .middle, .bottom {
 			width:100%;
-			height:6px;
-			background:blue;
+			height:4px;
+			background:$brand-primary;
 			display:block;
 			margin:3px 0;
 			transition:all .3s;
+			border-radius:3px;
 		}
 		&.active {
 			.bottom {
 				transform: rotate(-45deg);
-				width:24px;
-				height:4px;
 				top:27px;
 				margin-left:14px;
 			}
@@ -106,17 +109,13 @@
 				position:relative;
 				transform:rotate(45deg);
 				top:15px;
-				width:24px;
-				height:4px;
 				left:-1px;
 			}
 			.middle {
 				position:relative;
 				transform: rotate(90deg);
-				width: 28px;
 				left: 4px;
 				top: 0px;
-				height:4px;
 			}
 		}
 	}

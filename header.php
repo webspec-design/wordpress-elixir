@@ -24,7 +24,7 @@
 					</div>
 				</div>
 				<?php wp_nav_menu(array(
-					'menu'=>'navigation-menu',
+					'theme_location'=>'navigation-menu',
 					'walker'=>new wp_bootstrap_navwalker()
 				)); ?>
 			</div>

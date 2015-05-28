@@ -76,6 +76,7 @@ gulp.task('styles', function() {
 				return path.dirname(file);
 			})
 		}))
+		.on('error', handleErrors)
 		.pipe(autoprefix())
 		.pipe(gulp.dest(destPaths.styles))
 		.pipe(notify('Styles task complete!'));
