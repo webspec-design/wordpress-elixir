@@ -6,4 +6,4 @@ jQuery(document).ready(function($) {
 	$('.mobile-dropdown').click(function() {
 		$(this).toggleClass('active').next('.dropdown-menu').slideToggle();
 	});
-})
+});
