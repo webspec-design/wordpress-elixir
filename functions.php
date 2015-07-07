@@ -14,7 +14,7 @@ class ReplaceMeTheme {
 	function __construct() {
 		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
 		add_action('init', array($this, 'menus_image_sizes'));
-		add_action('after_setup_theme', array($this, 'title_support'));
+		add_action('after_setup_theme', array($this, 'theme_support'));
 		add_action('after_setup_theme', array($this, 'editor_roles'));
 	}
 
@@ -31,8 +31,9 @@ class ReplaceMeTheme {
 	* By opting into this feature the <title> element should be left out of <head>
 	* @since 4.1
 	*/
-	public static function title_support() {
+	public static function theme_support() {
 		add_theme_support( 'title-tag' );
+		add_theme_support( 'post-thumbnails' );
 	}
 
 	public static function editor_roles() {
