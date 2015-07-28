@@ -15,7 +15,10 @@ class ReplaceMeTheme {
 		add_action('wp_enqueue_scripts', array($this, 'wp_enqueue_scripts'));
 		add_action('init', array($this, 'menus_image_sizes'));
 		add_action('after_setup_theme', array($this, 'theme_support'));
+
 		add_action('after_setup_theme', array($this, 'editor_roles'));
+		add_filter( 'editable_roles', array(&$this, 'editable_roles'));
+    add_filter( 'map_meta_cap', array(&$this, 'map_meta_cap'), 10, 4);
 	}
 
 	public static function getInstance() {
@@ -40,11 +43,55 @@ class ReplaceMeTheme {
 		$caps_set = get_option('ws_caps_set');
 		if(!$caps_set) {
 			$role = get_role('editor');
-			$role->add_cap('edit_theme_options');
-			$role->add_cap('gform_full_access');
+			$caps = ['edit_theme_options', 'edit_users', 'list_users', 'remove_users', 'add_users', 'delete_users', 'create_users', 'gform_full_access'];
+			foreach($caps as $cap) {
+				$role->add_cap($cap);
+			}
 			update_option('ws_caps_set', true);
 		}
 	}
+
+	function editable_roles( $roles ){
+    if( isset( $roles['administrator'] ) && !current_user_can('administrator') ){
+      unset( $roles['administrator']);
+    }
+    return $roles;
+  }
+
+  // If someone is trying to edit or delete and admin and that user isn't an admin, don't allow it
+  function map_meta_cap( $caps, $cap, $user_id, $args ){
+
+    switch( $cap ){
+        case 'edit_user':
+        case 'remove_user':
+        case 'promote_user':
+            if( isset($args[0]) && $args[0] == $user_id )
+                break;
+            elseif( !isset($args[0]) )
+                $caps[] = 'do_not_allow';
+            $other = new WP_User( absint($args[0]) );
+            if( $other->has_cap( 'administrator' ) ){
+                if(!current_user_can('administrator')){
+                    $caps[] = 'do_not_allow';
+                }
+            }
+            break;
+        case 'delete_user':
+        case 'delete_users':
+            if( !isset($args[0]) )
+                break;
+            $other = new WP_User( absint($args[0]) );
+            if( $other->has_cap( 'administrator' ) ){
+                if(!current_user_can('administrator')){
+                    $caps[] = 'do_not_allow';
+                }
+            }
+            break;
+        default:
+            break;
+    }
+    return $caps;
+  }
 
 	public static function wp_enqueue_scripts() {
 		wp_enqueue_script('jquery');
