@@ -18,9 +18,9 @@
 			<div class="col-md-8 menu-col">
 				<div class="trigger-wrap">
 					<div class="menu-trigger">
-						<span class="top"></span>
-						<span class="middle"></span>
-						<span class="bottom"></span>
+						<span class="top menu-trigger--spinner"></span>
+						<span class="middle menu-trigger--spinner"></span>
+						<span class="bottom menu-trigger--spinner"></span>
 					</div>
 				</div>
 				<?php wp_nav_menu(array(
