@@ -19,6 +19,14 @@
     "html5shiv": ">=3.7.2",
     "respond": ">=1.4.2"
   },
+  "overrides": {
+    "fontawesome": {
+      "main": [
+        "./fonts/*",
+        "scss/font-awesome.scss"
+      ]
+    }
+  },
   "main": [
     "js/**/*.js",
     "sass/main.scss",
