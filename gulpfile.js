@@ -183,8 +183,7 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('clean', function(cb) {
-	//return gulp.src('build').pipe(clean());
-	del(['build'], cb);
+	del(['build']).then(cb());
 });
 
 gulp.task('clear-cache', function() {
