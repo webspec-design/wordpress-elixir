@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!--[if IE]><link rel="shortcut icon" href="<?php echo THEMEROOT; ?>favicon.ico"/><![endif]-->
 <?php wp_head(); ?>
 </head>
 <body>
