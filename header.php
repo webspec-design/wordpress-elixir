@@ -23,7 +23,8 @@
 				</div>
 				<?php wp_nav_menu(array(
 					'theme_location'=>'navigation-menu',
-					'walker'=>new WP_Bootstrap_Navwalker()
+					'walker'=>new WP_Bootstrap_Navwalker(),
+					'container_class' => 'menu-location-navigation-menu-container'
 				)); ?>
 			</div>
 		</div>
