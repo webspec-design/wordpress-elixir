@@ -5,11 +5,11 @@
     "homepage": "http://webspecdesign.com",
     "license": "MIT",
     "repositories": [
-    {
-      "type": "vcs",
-      "url": "https://github.com/ethanclevenger91/StarterGulp"
-    }
-  ],
+        {
+          "type": "vcs",
+          "url": "https://github.com/ethanclevenger91/StarterGulp"
+        }
+      ],
     "require": {
         "composer/installers": "~1.0",
         "ethanclevenger91/starter-gulp":"dev-master"
