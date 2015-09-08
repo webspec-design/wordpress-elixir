@@ -7,7 +7,7 @@ define( 'SCRIPTS', THEMEROOT . '/build/js' );
 define( 'STYLES', THEMEROOT . '/build/css' );
 define( 'IMAGES_PATH', THEMEPATH . '/build/img' );
 
-require_once('includes/WP_Bootstrap_Navwalker');
+require_once('includes/WP_Bootstrap_Navwalker.php');
 
 class ReplaceMeTheme {
 	private static $self = false;
