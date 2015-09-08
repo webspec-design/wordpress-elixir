@@ -1,0 +1,18 @@
+{
+  "bsProxy": "http://replaceme.com",
+  "paths": {
+  	"scripts": "../../js/**/*.js",
+  	"styles": "../..sass/**/*.scss",
+  	"fonts": "../..sass/fonts/**/*",
+  	"images": "../..img/**/*.{png,jpg,jpeg,gif,svg}",
+  	"bowerDir": "../../bower_components",
+    "bowerJson": "../../bower.json"
+  },
+  "destPaths": {
+    "build": "../../build",
+  	"scripts": "../../build/js",
+  	"styles": "../../build/css",
+  	"fonts": "../../build/fonts",
+  	"images": "../../build/img"
+  }
+}
