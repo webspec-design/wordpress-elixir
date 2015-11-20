@@ -15,5 +15,6 @@
   	"styles": "../../build/css",
   	"fonts": "../../build/fonts",
   	"images": "../../build/img"
-  }
+  },
+  "disableNotifications": false
 }
