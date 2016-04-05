@@ -16,8 +16,6 @@
   "dependencies": {
     "bootstrap-sass-official": "^3.3.3",
     "fontawesome": ">=4.3.0",
-    "html5shiv": ">=3.7.2",
-    "respond": ">=1.4.2",
     "webspec-gulp-starter": "git@bitbucket.org:webspec/webspec-gulp.git"
   },
   "overrides": {

@@ -105,7 +105,7 @@ class ReplaceMeTheme {
 		register_nav_menus(array(
 			'navigation-menu' => 'Navigation Menu'
 		));
-		
+
 		//Fullscreen image
 		add_image_size('fullscreen', 1920, 1080);
 	}
