@@ -1,0 +1,128 @@
+{
+
+    "assetsPath": "",
+
+    "publicPath": "build",
+
+    "appPath": "",
+
+    "notifications": true,
+
+    "batchOptions": {
+        "limit": "undefined",
+        "timeout": 1000
+    },
+
+    "css": {
+
+        "folder": "css",
+
+        "outputFolder": "css",
+
+        "autoprefix": {
+            "enabled": true,
+
+            "options": {
+                "browsers": ["> 1%"],
+                "cascade": false
+            }
+        },
+
+        "minifier": {
+            "pluginOptions": {}
+        },
+
+        "sass": {
+            "folder": "sass",
+
+            "pluginOptions": {
+                "precision": 10
+            }
+        },
+
+        "less": {
+            "folder": "less",
+
+            "pluginOptions": {}
+        }
+    },
+
+    "js": {
+
+        "folder": "js",
+
+        "outputFolder": "js",
+
+        "babel": {
+            "options": {
+                "presets": ["es2015", "react"]
+            }
+        },
+
+        "uglify": {
+            "options": {
+                "compress": {
+                    "drop_console": true
+                }
+            }
+        },
+
+        "browserify": {
+            "options": {
+                "cache": {},
+                "packageCache": {}
+            },
+
+            "plugins": [],
+
+            "externals": [],
+
+            "transformers": [{
+                    "name": "babelify",
+
+                    "options": {
+                        "presets": ["es2015", "react"]
+                    }
+                },
+
+                {
+                    "name": "partialify",
+
+                    "options": {}
+                }
+            ],
+
+            "watchify": {
+                "enabled": false,
+
+                "options": {}
+            }
+        }
+    },
+
+    "img": {
+      "folder":"img",
+      "outputFolder":"img"
+    },
+
+    "testing": {
+
+        "phpUnit": {
+            "path": "tests"
+        },
+
+        "phpSpec": {
+            "path": "spec"
+        }
+    },
+
+    "versioning": {
+        "buildFolder": "build"
+    },
+
+    "browserSync": {
+        "reloadOnRestart": true,
+        "notify": true
+    }
+
+}
