@@ -1,3 +1,6 @@
+require('./jquery.match_height.js');
+require('bootstrap');
+
 jQuery(document).ready(function($) {
 	$('.menu-trigger').click(function() {
 		$(this).toggleClass('active');
