@@ -32,6 +32,10 @@ elixir(function(mix) {
     gulplette(mix);
 
     mix.browserSync({
-      proxy: env.bsProxy
+      proxy: env.bsProxy,
+      files: [
+        '**/*.php',
+        'build/**/*'
+      ]
     });
 });
