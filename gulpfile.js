@@ -28,6 +28,8 @@ elixir(function(mix) {
 
     mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap', 'build/fonts');
     mix.copy('node_modules/font-awesome/fonts', 'build/fonts');
+    //Copy all non compressible images to build
+    mix.copy('img/*.!(png|jpg)', 'build/img');
 
     gulplette(mix);
 
