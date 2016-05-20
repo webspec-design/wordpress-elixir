@@ -107,7 +107,7 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
 			$item_output .= $args->after;
 			if($args->has_children) {
-				$item_output .= '<div class="mobile-dropdown"><i class="fa fa-plus"></i></div>';
+				$item_output .= '<div class="mobile-dropdown-icon"><i class="fa fa-plus"></i></div>';
 			}
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}

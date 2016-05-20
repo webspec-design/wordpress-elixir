@@ -6,7 +6,7 @@ jQuery(document).ready(function($) {
 		$(this).toggleClass('active');
 		$('.menu-location-navigation-menu-container').slideToggle();
 	});
-	$('.mobile-dropdown').click(function() {
+	$('.mobile-dropdown-icon').click(function() {
 		$(this).toggleClass('active').next('.dropdown-menu').slideToggle();
 	});
 	$(window).load(function() {
