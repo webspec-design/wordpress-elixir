@@ -37,7 +37,8 @@ elixir(function(mix) {
       proxy: env.bsProxy,
       files: [
         '**/*.php',
-        'build/**/*'
+        'build/css/*.css',
+        'build/**/!(*.css)'
       ]
     });
 });
