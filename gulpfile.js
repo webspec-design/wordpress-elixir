@@ -3,6 +3,14 @@ require('elixir-tinypng');
 var env = require('./env.json');
 var gulplette = require('./tasks/main.js');
 
+var hooks = {
+  hook: function(hook, mix, args) {
+    if(gulplette.hasOwnProperty('hook_'+hook)) {
+      gulplette['hook_'+hook](mix, args);
+    }
+  }
+};
+
 /*
  |--------------------------------------------------------------------------
  | Elixir Asset Management
@@ -15,6 +23,8 @@ var gulplette = require('./tasks/main.js');
  */
 
 elixir(function(mix) {
+    hooks.hook('start', mix, {});
+
     mix.browserify('main.js');
 
     mix.sass('main.scss');
@@ -31,7 +41,7 @@ elixir(function(mix) {
     //Copy all non compressible images to build
     mix.copy('img/*.!(png|jpg)', 'build/img');
 
-    gulplette(mix);
+    hooks.hook('after_copy', mix, {});
 
     mix.browserSync({
       proxy: env.bsProxy,
@@ -41,4 +51,6 @@ elixir(function(mix) {
         'build/**/!(*.css)'
       ]
     });
+
+    hooks.hook('end', mix, {});
 });
