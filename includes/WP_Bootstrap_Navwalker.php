@@ -1,6 +1,16 @@
 <?php
 
-class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
+/**
+ * Class Name: wp_bootstrap_navwalker
+ * GitHub URI: https://github.com/twittem/wp-bootstrap-navwalker
+ * Description: A custom WordPress nav walker class to implement the Bootstrap 3 navigation style in a custom theme using the WordPress built in menu manager.
+ * Version: 2.0.4
+ * Author: Edward McIntyre - @twittem
+ * License: GPL-2.0+
+ * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ */
+
+class wp_bootstrap_navwalker extends Walker_Nav_Menu {
 
 	/**
 	 * @see Walker::start_lvl()
@@ -21,8 +31,8 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 	 * @param string $output Passed by reference. Used to append additional content.
 	 * @param object $item Menu item data object.
 	 * @param int $depth Depth of menu item. Used for padding.
-	 * @param object $args
 	 * @param int $current_page Menu item ID.
+	 * @param object $args
 	 */
 	public function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
 		$indent = ( $depth ) ? str_repeat( "\t", $depth ) : '';
@@ -69,14 +79,15 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$atts['title']  = ! empty( $item->title )	? $item->title	: '';
 			$atts['target'] = ! empty( $item->target )	? $item->target	: '';
 			$atts['rel']    = ! empty( $item->xfn )		? $item->xfn	: '';
-			$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 
 			// If item has_children add atts to a.
 			if ( $args->has_children && $depth === 0 ) {
-				//$atts['data-toggle']	= 'dropdown';
+				$atts['href']   		= '#';
+				$atts['data-toggle']	= 'dropdown';
 				$atts['class']			= 'dropdown-toggle';
 				$atts['aria-haspopup']	= 'true';
 			} else {
+				$atts['href'] = ! empty( $item->url ) ? $item->url : '';
 			}
 
 			$atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args );
@@ -106,9 +117,7 @@ class WP_Bootstrap_Navwalker extends Walker_Nav_Menu {
 			$item_output .= $args->link_before . apply_filters( 'the_title', $item->title, $item->ID ) . $args->link_after;
 			$item_output .= ( $args->has_children && 0 === $depth ) ? ' <span class="caret"></span></a>' : '</a>';
 			$item_output .= $args->after;
-			if($args->has_children) {
-				$item_output .= '<div class="mobile-dropdown-icon"><i class="fa fa-plus"></i></div>';
-			}
+
 			$output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
 		}
 	}
