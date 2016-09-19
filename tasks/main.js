@@ -1,4 +1,6 @@
-var env = require('./../env.json');
+var env = require('./../env.json'),
+    gulp = require('gulp'),
+    elixir = require('laravel-elixir');
 
 var gulplette = {
   hook_start: function(mix, args) {
