@@ -25,24 +25,34 @@ var hooks = {
 elixir(function(mix) {
     hooks.hook('start', mix, {});
 
+    // Javascript compilation
     mix.browserify('main.js');
 
+    // Sass compliation
     mix.sass('main.scss');
 
-    mix.tinypng({
-      key:env.tinyPngApiKey,
-      sigFile:'.tinypng-sigs',
-      log:true,
-      summarize:true
-    });
+    // Image optimization
+    if(env.tinyPngApiKey) {
+      mix.tinypng({
+        key:env.tinyPngApiKey,
+        sigFile:'.tinypng-sigs',
+        log:true,
+        summarize:true
+      });
 
+      // Copy all non compressible images to build
+      mix.copy('img/*.!(png|jpg)', 'build/img');
+    } else {
+      mix.copy('img/*', 'build/img');
+    }
+
+    // Copy Bootstrap and Font Awesome fonts
     mix.copy('node_modules/bootstrap-sass/assets/fonts/bootstrap', 'build/fonts');
     mix.copy('node_modules/font-awesome/fonts', 'build/fonts');
-    //Copy all non compressible images to build
-    mix.copy('img/*.!(png|jpg)', 'build/img');
 
     hooks.hook('after_copy', mix, {});
 
+    // Begin BrowserSync - Elixir will only run this task on `watch`
     mix.browserSync({
       proxy: env.bsProxy,
       files: [

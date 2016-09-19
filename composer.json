@@ -1,11 +1,14 @@
 {
-    "name": "webspec/wordpress-gulp-bower-starter-theme",
+    "name": "webspec-design/wordpress-elixir",
     "type": "wordpress-theme",
-    "description": "Gulp/Bower Starter Theme",
+    "description": "WordPress Elixir Starter Theme",
     "homepage": "http://webspecdesign.com",
     "license": "MIT",
     "require": {
-        "composer/installers": "~1.0"
+        "composer/installers": "1.x.x"
+    },
+    "extra": {
+      "installer-name": "wordpress-elixir"
     },
     "authors": [
         {

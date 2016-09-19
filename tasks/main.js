@@ -1,3 +1,5 @@
+var env = require('./../env.json');
+
 var gulplette = {
   hook_start: function(mix, args) {
   },
