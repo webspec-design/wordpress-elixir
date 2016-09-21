@@ -1,16 +1,30 @@
 {
-  "name": "webspec-wordpress-starter-theme",
-  "version": "3.1.0",
-  "description": "Starter setup for elixir in a WordPress theme",
+  "name": "wordpress-elixir",
+  "version": "1.0.0",
+  "description": "WordPress Elixir Starter Theme",
   "license": "MIT",
-  "author": {
-    "name": "Ethan Clevenger",
-    "email": "ethan.c.clevenger@gmail.com",
-    "url": "http://ethanclevenger.com"
-  },
+  "contributors": [
+    {
+      "name": "Ethan Clevenger",
+      "email": "ethan.c.clevenger@gmail.com",
+      "url": "http://ethanclevenger.com"
+    },
+    {
+      "name": "Nick Hoobin",
+      "email": "nick@webspecdesign.com"
+    },
+    {
+      "name": "Tyler Abbot",
+      "email": "tyler@webspecdesign.com"
+    },
+    {
+      "name": "Michael Dippold",
+      "email": "michael@webspecdesign.com"
+    }
+  ],
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/webspec/wordpress-gulp-bower-starter-theme"
+    "url": "https://github.com/webspec-design/wordpress-elixir"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.6",

@@ -31,30 +31,14 @@
 
     <!-- Collect the nav links, forms, and other content for toggling -->
 			<?php wp_nav_menu(array(
-				'theme_location'=>'navigation-menu',
-				'depth'             => 2,
+                'theme_location'=>'navigation-menu',
+                'depth'             => 2,
         'container'         => 'div',
         'container_class'   => 'collapse navbar-collapse',
-				'container_id'      => 'navbar-collapse-1',
+                'container_id'      => 'navbar-collapse-1',
         'menu_class'        => 'nav navbar-nav',
         'fallback_cb'       => 'wp_bootstrap_navwalker::fallback',
         'walker'            => new wp_bootstrap_navwalker()
-			)); ?>
+            )); ?>
 	</div>
-	<!-- <div class="container">
-		<div class="row logo-menu">
-			<div class="col-md-4 logo-col">
-				<a class="main-logo" href="<?php echo home_url(); ?>"><img src="<?php echo IMAGES; ?>/logo.png"></a>
-			</div>
-			<div class="col-md-8 menu-col">
-				<div class="trigger-wrap">
-					<div class="menu-trigger">
-						<span class="top menu-trigger--spinner"></span>
-						<span class="middle menu-trigger--spinner"></span>
-						<span class="bottom menu-trigger--spinner"></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> -->
 </div>
