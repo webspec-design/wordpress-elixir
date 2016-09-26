@@ -18,7 +18,7 @@ If you do want to maintain drop-in updatability, consider not altering your `gul
 
 ## Requirements
 - Node/npm
-- PHP 5.4 - while WordPress core is comfortable supporting insecure, end-of-life versions of PHP, this theme is not, and the syntax used reflects that.
+- PHP 5.4 - while WordPress core is comfortable supporting unsupported, potentially insecure, end-of-life versions of PHP, this theme is not, and the syntax used reflects that.
 
 ## Comes With
 - Bootstrap
@@ -48,12 +48,12 @@ The gulpfile is designed to compile your sass and any dependencies into one file
 To use a library built on less, you have two options:
 
 1. Tinker with the gulpfile and `elixir.json` to compile sass, then compile less, and then concatenate the resulting files using `mix.styles()`.
-2. Make creative use of the included [`gulplettes`](#Custom Gulp Tasks) to accomplish #1.
+2. Make creative use of the included [`gulplettes`](#custom-gulp-tasks) to accomplish #1.
 
 See the [Elixir documentation](https://laravel.com/docs/5.3/elixir#plain-css) for more information on Elixir's capabilities.
 
 #### Using vanilla CSS
-To import a vanilla CSS library, you could simply write `@import node_modules/animate.css/animate.css`. However, this is directly translated to a CSS import rather than appended to your styles, so if you haven't successfully run `npm install` server-side, the import will result in a 404. Consider using the `before_copy` [gulplette](#Custom Gulp Tasks) to [copy such files](https://laravel.com/docs/5.3/elixir#copying-files-and-directories) into something like `sass/libs` as an scss file, and then import it like you would any other scss file.
+To import a vanilla CSS library, you could simply write `@import node_modules/animate.css/animate.css`. However, this is directly translated to a CSS import rather than appended to your styles, so if you haven't successfully run `npm install` server-side, the import will result in a 404. Consider using the `before_copy` [gulplette](#custom-gulp-tasks) to [copy such files](https://laravel.com/docs/5.3/elixir#copying-files-and-directories) into something like `sass/libs` as an scss file, and then import it like you would any other scss file.
 
 ### Browserify
 The gulpfile is designed to compile your own Javascript and npm modules into one file using [Browserify](http://browserify.org/). Scripts are compiled to `build/js/main.js`, which is already enqueued in the functions file.

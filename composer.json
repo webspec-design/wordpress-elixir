@@ -2,10 +2,12 @@
     "name": "webspec-design/wordpress-elixir",
     "type": "wordpress-theme",
     "description": "WordPress Elixir Starter Theme",
+    "keywords": ["wordpress", "theme"],
     "homepage": "http://webspecdesign.com",
     "license": "MIT",
     "require": {
-        "composer/installers": "1.x.x"
+        "composer/installers": "1.x.x",
+        "php": ">=5.4.0"
     },
     "extra": {
       "installer-name": "wordpress-elixir"
@@ -16,6 +18,18 @@
             "email": "ethan.c.clevenger@gmail.com",
             "homepage": "http://ethanclevenger.com",
             "role": "Developer"
+        },
+        {
+          "name": "Nick Hoobin",
+          "email": "nick@webspecdesign.com"
+        },
+        {
+          "name": "Tyler Abbot",
+          "email": "tyler@webspecdesign.com"
+        },
+        {
+          "name": "Michael Dippold",
+          "email": "michael@webspecdesign.com"
         }
     ]
 }
