@@ -59,7 +59,11 @@ elixir(function(mix) {
         '**/*.php',
         'build/css/*.css',
         'build/**/!(*.css)'
-      ]
+      ],
+      watchOptions: {
+        usePolling: false,
+        interval: 2000
+      }
     });
 
     hooks.hook('end', mix, {});
