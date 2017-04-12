@@ -3,7 +3,7 @@
     "type": "wordpress-theme",
     "description": "WordPress Elixir Starter Theme",
     "keywords": ["wordpress", "theme"],
-    "homepage": "http://webspecdesign.com",
+    "homepage": "https://webspecdesign.com",
     "license": "MIT",
     "require": {
         "composer/installers": "1.x.x",
