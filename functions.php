@@ -15,7 +15,6 @@ require_once('includes/WP_Bootstrap_Navwalker.php');
 class WordPressElixirTheme
 {
     private static $self = false;
-    private static $isInitialized = false;
 
     public function __construct()
     {
@@ -26,9 +25,8 @@ class WordPressElixirTheme
 
     public static function getInstance()
     {
-        if (!self::$isInitialized) {
+        if (!self::$self) {
             self::$self = new self();
-            self::$isInitialized = true;
         }
         return self::$self;
     }
