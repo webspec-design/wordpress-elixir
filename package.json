@@ -31,7 +31,7 @@
     "font-awesome": "^4.6.1"
   },
   "devDependencies": {
-    "elixir-tinypng": "^1.0.1",
+    "elixir-tinypng": "^1.1.0",
     "gulp": "^3.9.1",
     "laravel-elixir": "^5.0.0"
   },
