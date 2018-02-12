@@ -76,5 +76,8 @@ module.exports = {
         port: 3000,
         proxy: env.bsProxy
     })
-  ]
+  ],
+  externals: {
+    jquery: 'jQuery'
+  }
 };
